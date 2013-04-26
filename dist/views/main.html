@@ -1,0 +1,43 @@
+<div class="hero-unit">
+  <h1>Search for Staff</h1>
+  <form novalidate="" class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="firstName">First Name</label>
+      <div class="controls">
+        <input type="text" id="firstName" placeholder="Bill" data-ng-model="criteria.firstName">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="lastName">Last Name</label>
+      <div class="controls">
+        <input type="text" id="lastName" placeholder="Bright" data-ng-model="criteria.lastName">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="city">City</label>
+      <div class="controls">
+        <input type="text" id="city" placeholder="Orlando" data-ng-model="criteria.city">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="state">State</label>
+      <div class="controls">
+        <input type="text" id="state" placeholder="FL" data-ng-model="criteria.state">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <button class="btn" data-ng-click="search()"><i class="icon-search"></i> Search</button>
+      </div>
+    </div>
+  </form>
+  <h2 data-ng-show="foundStaff.length > 0">We found these:</h2>
+  <ul>
+    <li data-ng-repeat="staff in foundStaff">
+      <h3>{{staff.firstName}} {{staff.lastName}}</h3>
+      <p><a href="tel:{{staff.cellPhone}}"><i class="icon-large icon-mobile-phone"></i> {{staff.cellPhone}}</a></p>
+      <p><i class="icon-large icon-home"></i> {{staff.city}}, {{staff.state}}</p>
+
+    </li>
+  </ul>
+</div>
