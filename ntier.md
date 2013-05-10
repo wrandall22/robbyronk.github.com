@@ -37,23 +37,32 @@ Applog should:
 - Consume promises from services
 
 Applog should not:
-- Extensively transform data
+- Extensively transform or aggregate data
 - Format data
 - Use $http or $resource
 - Have any notion of what HTTP is
 
 ### Service Layer
+Interface: provide promises to the Application Logic layer, consume promises from the REST Client and other services
 
 Service Layer should:
+- Contain any extensive Client Side transformations or aggregations of data
+- DRY up the applog layer
 
 Service Layer should not:
+- Use $http or $resource
 
 
 ### REST Client
+Interface: provide promises to the service layer, HTTP to the server.
 
 REST Client should:
+- Use $http or $resource
+- Abstract away HTTP details
 
 REST Client should not:
+- Leak HTTP details up
+
 
 --------------
 #### :arrow_up: Client Side/Front End
@@ -64,14 +73,17 @@ REST Client should not:
 ### REST Server
 
 REST Server should:
+- Abstract away HTTP details
 
 REST Server should not:
 
 ### Business Logic
 
 Business Logic Layer should:
+- Testable by plain vanilla JUnit/TestNG/whatever
 
 Business Logic Layer should not:
+- 
 
 ### Data Transformation
 
