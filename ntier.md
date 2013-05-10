@@ -43,6 +43,8 @@ Applog should not:
 - Have any notion of what HTTP is
 
 ### Service Layer
+This layer isn't always needed in trivial apps.
+
 Interface: provide promises to the Application Logic layer, consume promises from the REST Client and other services
 
 Service Layer should:
@@ -52,9 +54,8 @@ Service Layer should:
 Service Layer should not:
 - Use $http or $resource
 
-
 ### REST Client
-Interface: provide promises to the service layer, HTTP to the server.
+Interface: provide promises to the service layer, HTTP requests to the server.
 
 REST Client should:
 - Use $http or $resource
@@ -71,23 +72,31 @@ REST Client should not:
 --------------
 
 ### REST Server
+Interface: HTTP Responses to the REST Client. Uses methods on business logic objects.
 
 REST Server should:
 - Abstract away HTTP details
 
 REST Server should not:
+- Contain Business Logic, Authentication or Authorization
+- Leak HTTP details down
+
+RFC: Should there be a AuthN/AuthZ layer here or should AuthN/AuthZ be a part of BizLog?
 
 ### Business Logic
+With all the business logic inside of Plain Old Java Objects, the code is portable between frameworks and testable without a Java EE container. Data transformation should only happen when Business Logic drives the transformation and the transformation should be tested. This layer deserves very high code coverage.
 
 Business Logic Layer should:
 - Testable by plain vanilla JUnit/TestNG/whatever
+- Contains all the business logic
 
 Business Logic Layer should not:
-- 
+- Transform data to enable BizLog
 
 ### Data Transformation
 
 Data Transformation Layer should:
+- Transform data to enable
 
 Data Transformation Layer should not:
 
@@ -102,3 +111,4 @@ Database Client should not:
 Database should:
 
 Database should not:
+- Have any business logic unless you have performance needs and proof that the DB is more performant
