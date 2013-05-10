@@ -8,11 +8,11 @@ Our team has been talking about this and I thought it deserved some more thought
 From user down:
 - View
 - Application Logic
-- data transformation
+- Service Layer
 - REST Client
 - REST Server
 - Business Logic
-- data transformation
+- Data Transformation
 - Database Client
 - Database
 
