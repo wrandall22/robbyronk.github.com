@@ -12,6 +12,7 @@ From user down:
 - Service Layer
 - REST Client
 - REST Server
+- Auth Layer
 - Business Logic
 - Data Transformation
 - Database Client
@@ -84,7 +85,14 @@ REST Server should not:
 - Contain Business Logic, Authentication or Authorization
 - Leak HTTP details down
 
-RFC: Should there be a AuthN/AuthZ layer here or should AuthN/AuthZ be a part of BizLog?
+### Authentication and Authorization
+Authentication should use OAuth. Authorization should use @mattdrees new framework which he proposes [here](https://gist.github.com/mattdrees/5532475).
+
+Auth should:
+- Handle all external security
+
+Auth should not:
+- Deal with HTTP
 
 ### Business Logic
 With all the business logic inside of Plain Old Java Objects, the code is portable between frameworks and testable without a Java EE container. Data transformation should only happen when Business Logic drives the transformation. This layer deserves very high code coverage. Be sure to consider error cases.
