@@ -5,6 +5,8 @@ Our team has been talking about this and I thought it deserved some more thought
 
 ## The Layers
 Each of the layers should have strictly defined interfaces. Each layer can then be programmed "towards" that interface.
+In theory, each layer could be owned by a different person. More theory, every layer could be a separate project.
+The front-end could use bower to get updated layers and the back-end could use a Maven parent project.
 
 From user down:
 - View
