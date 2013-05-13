@@ -23,7 +23,8 @@ From user down:
 ### Front End
 
 #### View
-The View is the HTML templates. It only communicates with the Application Logic (applog) layer. The interface between applog and view is $scope.
+The View is the HTML templates. It only communicates with the Application Logic (applog) layer. The interface
+between applog and view is $scope.
 
 The View should:
 - Format data using filters
@@ -34,7 +35,8 @@ The View should not:
 - Transform data into more data
 
 #### Applcation Logic
-Think Angular controllers. The Application Logic (applog) layer exposes data and functions on the scope. Applog injects services from the service layer.
+Think Angular controllers. The Application Logic (applog) layer exposes data and functions on the scope. Applog
+injects services from the service layer.
 
 Applog should:
 - Put data and functions on $scope
@@ -48,7 +50,8 @@ Applog should not:
 - Have any notion of what HTTP is
 
 #### Service Layer
-This layer isn't always needed in trivial apps. Non-trivial data transformations should have automated tests and above average code coverage. 
+This layer isn't always needed in trivial apps. Non-trivial data transformations should have automated tests 
+and above average code coverage. 
 
 Interface: provide promises to the Application Logic layer, consume promises from the REST Client and other services
 
@@ -88,7 +91,8 @@ REST Server should not:
 - Leak HTTP details down
 
 #### Authentication and Authorization
-Authentication should use OAuth. Authorization should use @mattdrees new framework which he proposes [here](https://gist.github.com/mattdrees/5532475).
+Authentication should use OAuth. Authorization should use @mattdrees new framework which he proposes 
+[here](https://gist.github.com/mattdrees/5532475).
 
 Auth should:
 - Handle all external security
@@ -97,7 +101,9 @@ Auth should not:
 - Deal with HTTP
 
 #### Business Logic
-With all the business logic inside of Plain Old Java Objects, the code is portable between frameworks and testable without a Java EE container. Data transformation should only happen when Business Logic drives the transformation. This layer deserves very high code coverage. Be sure to consider error cases.
+With all the business logic inside of Plain Old Java Objects, the code is portable between frameworks and testable 
+without a Java EE container. Data transformation should only happen when Business Logic drives the transformation. 
+This layer deserves very high code coverage. Be sure to consider error cases.
 
 Business Logic Layer should:
 - Testable by plain vanilla JUnit/TestNG/whatever
@@ -107,7 +113,11 @@ Business Logic Layer should not:
 - Transform data to enable BizLog
 
 #### Data Transformation
-This layer exists to do data transformations between the Business Logic and the Database Client layers, making these layers smaller. This layer should be testable without a Java EE container. Moving data transformations out of the hard-to-test database client layer and into the easy-to-test transformation layer will reduce maintenance costs. Moving data transformations out of the high coverage BizLog layer and into the less-than-high coverage transformation layer will increase agility.
+This layer exists to do data transformations between the Business Logic and the Database Client layers, making 
+these layers smaller. This layer should be testable without a Java EE container. Moving data transformations 
+out of the hard-to-test database client layer and into the easy-to-test transformation layer will reduce 
+maintenance costs. Moving data transformations out of the high coverage BizLog layer and into the less-than-high 
+coverage transformation layer will increase agility.
 
 Data Transformation Layer should:
 - Transform data to enable Business Logic
