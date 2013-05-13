@@ -9,18 +9,22 @@ In theory, each layer could be owned by a different person. More theory, every l
 The front-end could use bower to get updated layers and the back-end could use a Maven parent project.
 
 From user down:
-- View
-- Application Logic
-- Service Layer
-- REST Client
-- REST Server
-- Auth Layer
-- Business Logic
-- Data Transformation
-- Database Client
-- Database
+- Front End
+  - View
+  - Application Logic
+  - Service Layer
+  - REST Client
+- Back End
+  - REST Server
+  - Auth Layer
+  - Business Logic
+  - Data Transformation
+  - Database Client
+  - Database
 
-### View
+### Front End
+
+#### View
 The View is the HTML templates. It only communicates with the Application Logic (applog) layer. The interface between applog and view is $scope.
 
 The View should:
@@ -31,7 +35,7 @@ The View should:
 The View should not:
 - Transform data into more data
 
-### Applcation Logic
+#### Applcation Logic
 Think Angular controllers. The Application Logic (applog) layer exposes data and functions on the scope. Applog injects services from the service layer.
 
 Applog should:
@@ -45,7 +49,7 @@ Applog should not:
 - Use $http or $resource
 - Have any notion of what HTTP is
 
-### Service Layer
+#### Service Layer
 This layer isn't always needed in trivial apps. Non-trivial data transformations should have automated tests and above average code coverage. 
 
 Interface: provide promises to the Application Logic layer, consume promises from the REST Client and other services
@@ -57,7 +61,7 @@ Service Layer should:
 Service Layer should not:
 - Use $http or $resource
 
-### REST Client
+#### REST Client
 This layer of services is the only one that should inject $http or $resource.
 
 Interface: provide promises to the service layer, issue HTTP requests to the server.
@@ -71,12 +75,10 @@ REST Client should not:
 - Leak HTTP details up
 
 --------------
-#### :arrow_up: Client Side/Front End
-#### :arrow_up_down: HTTP
-#### :arrow_down: Server Side/Back End
---------------
 
-### REST Server
+### Back End
+
+#### REST Server
 Interface: HTTP Responses to the REST Client. Uses methods on business logic objects.
 
 REST Server should:
@@ -87,7 +89,7 @@ REST Server should not:
 - Contain Business Logic, Authentication or Authorization
 - Leak HTTP details down
 
-### Authentication and Authorization
+#### Authentication and Authorization
 Authentication should use OAuth. Authorization should use @mattdrees new framework which he proposes [here](https://gist.github.com/mattdrees/5532475).
 
 Auth should:
@@ -96,7 +98,7 @@ Auth should:
 Auth should not:
 - Deal with HTTP
 
-### Business Logic
+#### Business Logic
 With all the business logic inside of Plain Old Java Objects, the code is portable between frameworks and testable without a Java EE container. Data transformation should only happen when Business Logic drives the transformation. This layer deserves very high code coverage. Be sure to consider error cases.
 
 Business Logic Layer should:
@@ -106,7 +108,7 @@ Business Logic Layer should:
 Business Logic Layer should not:
 - Transform data to enable BizLog
 
-### Data Transformation
+#### Data Transformation
 This layer exists to do data transformations between the Business Logic and the Database Client layers, making these layers smaller. This layer should be testable without a Java EE container. Moving data transformations out of the hard-to-test database client layer and into the easy-to-test transformation layer will reduce maintenance costs. Moving data transformations out of the high coverage BizLog layer and into the less-than-high coverage transformation layer will increase agility.
 
 Data Transformation Layer should:
@@ -119,7 +121,7 @@ Data Transformation Layer should not:
 - Have a clue about what database is underneath
 - Have 100% code coverage
 
-### Database Client
+#### Database Client
 Whether it's Mongo, Riak, Redis, Postgres or even Oracle, this is the layer that cares about what the database is.
 
 Database Client should:
@@ -130,7 +132,7 @@ Database Client should:
 Database Client should not:
 - Leak DB exceptions or details upward
 
-### Database
+#### Database
 
 Database should:
 - Store stuff
