@@ -70,7 +70,7 @@ Interface: provide promises to the service layer, issue HTTP requests to the ser
 REST Client should:
 - Use $http or $resource
 - Abstract away HTTP details
-- Transmogrify JSON into POJSOs
+- Transmogrify JSON into POJOs
 
 REST Client should not:
 - Leak HTTP details up
